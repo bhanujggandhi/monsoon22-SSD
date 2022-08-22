@@ -22,7 +22,7 @@ while [[ $count -ne $size ]]; do
     randno=$(($RANDOM % 51))
     password+=(${startarr[$randno]})
 
-  # Ending should not be with an uppercase
+  # Ending should not be with an uppercase and no palindrome
   elif [[ $count -eq $(($size - 1)) ]]; then
     endarr=(${lowercase[*]} ${digits[*]} ${special[*]})
     randno=$(($RANDOM % 63))
@@ -44,6 +44,13 @@ while [[ $count -ne $size ]]; do
     # Lowercase should not be with a digit
   elif [[ "${lowercase[*]}" =~ "${password[$(($count - 1))]}" && "${digits[*]}" =~ "${allchar[$randno]}" ]]; then
     while [[ "${digits[*]}" =~ "${allchar[$randno]}" ]]; do
+      echo ${allchar[$rando]}
+      randno=$(($RANDOM % 89))
+    done
+    password+=(${allchar[randno]})
+
+  elif [[ "${digits[*]}" =~ "${password[$(($count - 1))]}" && "${lowercase[*]}" =~ "${allchar[$randno]}" ]]; then
+    while [[ "${lowercase[*]}" =~ "${allchar[$randno]}" ]]; do
       echo ${allchar[$rando]}
       randno=$(($RANDOM % 89))
     done
