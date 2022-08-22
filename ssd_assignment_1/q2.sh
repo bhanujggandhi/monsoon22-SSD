@@ -11,7 +11,7 @@ special=("~" "@" "%" "^" "!" "#" "%" "&" "(" ")" "_" "-" "+" "=" "," "." "<" ">"
 # Total 90 character
 allchar=(${digits[*]} ${lowercase[*]} ${uppercase[*]} ${special[*]})
 
-password=""
+password=()
 
 while [[ $count -ne $size ]]; do
   randno=$(($RANDOM % 89))
@@ -20,22 +20,32 @@ while [[ $count -ne $size ]]; do
   if [[ $count -eq 0 ]]; then
     startarr=(${lowercase[*]} ${uppercase[*]})
     randno=$(($RANDOM % 51))
-    password+=${startarr[randno]}
+    password+=(${startarr[$randno]})
   # Ending should not be with an uppercase
   elif [[ $count -eq $(($size - 1)) ]]; then
     endarr=(${lowercase[*]} ${digits[*]} ${special[*]})
     randno=$(($RANDOM % 63))
-    password+=${endarr[randno]}
+    password+=(${endarr[$randno]})
+  elif [[ "${password[$(($count - 1))]}" == "${allchar[$rando]}" ]]; then
+    char=${password[$(($count - 1))]}
+    while [[ "$char" == "${allchar[$rando]}" ]]; do
+      echo $char
+      echo ${allchar[$rando]}
+      randno=$(($RANDOM % 89))
+      break
+    done
+    password+=(${allchar[randno]})
   else
-    password+=${allchar[randno]}
+    password+=(${allchar[randno]})
   fi
   count=$(($count + 1))
 done
 
-echo ${password}
+echo ${password[@]}
 bhanuj="bhanuj"
 
-if [[ "${bhanuj:3:1}" == "a" ]]; then
+l=3
+if [[ "${bhanuj:$(($l - 1)):1}" == "a" ]]; then
   echo "Yes a is there"
 else
   echo "Nai hai"
