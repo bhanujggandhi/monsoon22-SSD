@@ -26,6 +26,9 @@ while [[ $count -ne $size ]]; do
   elif [[ $count -eq $(($size - 1)) ]]; then
     endarr=(${lowercase[*]} ${digits[*]} ${special[*]})
     randno=$(($RANDOM % 63))
+    while [[ "${password[0]}" == "${endarr[$randno]}" ]]; do
+      randno=$(($RANDOM % 63))
+    done
     password+=(${endarr[$randno]})
 
   # Two same lowercase should not be together
@@ -38,8 +41,17 @@ while [[ $count -ne $size ]]; do
     done
     password+=(${allchar[randno]})
 
+    # Lowercase should not be with a digit
   elif [[ "${lowercase[*]}" =~ "${password[$(($count - 1))]}" && "${digits[*]}" =~ "${allchar[$randno]}" ]]; then
     while [[ "${digits[*]}" =~ "${allchar[$randno]}" ]]; do
+      echo ${allchar[$rando]}
+      randno=$(($RANDOM % 89))
+    done
+    password+=(${allchar[randno]})
+
+    # 2 symbols not together
+  elif [[ "${special[*]}" =~ "${password[$(($count - 1))]}" && "${special[*]}" =~ "${allchar[$randno]}" ]]; then
+    while [[ "${special[*]}" =~ "${allchar[$randno]}" ]]; do
       echo ${allchar[$rando]}
       randno=$(($RANDOM % 89))
     done
@@ -50,14 +62,11 @@ while [[ $count -ne $size ]]; do
   count=$(($count + 1))
 done
 
-echo ${password[@]}
-bhanuj="bhanuj"
+echo "${password[*]}"
+ans=""
 
-l=3
-if [[ "${bhanuj:$(($l - 1)):1}" == "a" ]]; then
-  echo "Yes a is there"
-else
-  echo "Nai hai"
-fi
+for ((i = 0; i < ${#password[@]}; i++)); do
+  ans+="${password[$i]}"
+done
 
-# echo ${allchar[89]}
+echo $ans
