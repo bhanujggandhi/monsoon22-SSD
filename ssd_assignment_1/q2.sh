@@ -1,31 +1,44 @@
 #!/bin/bash
 
-read -p "Enter a number enter a number less than 100001: " n
+size=$((6 + ($RANDOM % 14)))
+echo "Password will be of length $size"
 
-if [ $n -gt 100000 ]; then
-  echo "Please enter a number less than 100001"
-  exit 1
-fi
+digits=({0..9})
+lowercase=({a..z})
+uppercase=({A..Z})
+special=("~" "@" "%" "^" "!" "#" "%" "&" "(" ")" "_" "-" "+" "=" "," "." "<" ">" "/" "?" "'" ":" ";" "{" "}" "[" "]" "|")
 
-if [ $n -eq 0 ]; then
-  echo 2
-  exit 0
-fi
+# Total 90 character
+allchar=(${digits[*]} ${lowercase[*]} ${uppercase[*]} ${special[*]})
 
-if [ $n -eq 1 ]; then
-  echo 1
-  exit 0
-fi
+password=""
 
-last=1
-secondlast=2
+while [[ $count -ne $size ]]; do
+  randno=$(($RANDOM % 89))
 
-for ((i = 2; i <= $n; i++)); do
-  temp=$last
-  last=$(($last + $secondlast))
-  secondlast=$temp
+  # Starting should be either lowercase or uppercase
+  if [[ $count -eq 0 ]]; then
+    startarr=(${lowercase[*]} ${uppercase[*]})
+    randno=$(($RANDOM % 51))
+    password+=${startarr[randno]}
+  # Ending should not be with an uppercase
+  elif [[ $count -eq $(($size - 1)) ]]; then
+    endarr=(${lowercase[*]} ${digits[*]} ${special[*]})
+    randno=$(($RANDOM % 63))
+    password+=${endarr[randno]}
+  else
+    password+=${allchar[randno]}
+  fi
+  count=$(($count + 1))
 done
 
-echo $last
+echo ${password}
+bhanuj="bhanuj"
 
-exit 0
+if [[ "${bhanuj:3:1}" == "a" ]]; then
+  echo "Yes a is there"
+else
+  echo "Nai hai"
+fi
+
+# echo ${allchar[89]}
