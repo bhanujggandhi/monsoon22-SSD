@@ -14,8 +14,8 @@ while [[ $diff -ne $kaprekarconst ]]; do
   arr=()
 
   for ((i = 0; i < 4; i++)); do
-    arr+=($(($n % 10)))
-    n=$(($n / 10))
+    arr+=($(($((10#$n)) % 10)))
+    n=$(($((10#$n)) / 10))
   done
 
   sortedarr=($(printf "%s\n" "${arr[@]}" | sort -n))
@@ -37,3 +37,5 @@ while [[ $diff -ne $kaprekarconst ]]; do
   echo $diff
   num=$diff
 done
+
+exit 0

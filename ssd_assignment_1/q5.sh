@@ -28,3 +28,5 @@ for ((i = 2; i <= $n; i++)); do
 done
 
 echo $last
+
+exit 0

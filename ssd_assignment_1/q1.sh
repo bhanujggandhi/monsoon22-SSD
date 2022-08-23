@@ -5,10 +5,12 @@ nums=()
 
 read -p "Enter a number: " n
 
+# Populate the array with 0
 for ((i = 0; i <= $n; i++)); do
   nums+=(0)
 done
 
+# Sieve of Eratosthenes
 for ((p = 2; p * p <= n; p++)); do
   if [ ${nums[$p]} -eq 0 ]; then
     for ((j = 2 * $p; j <= $n; j += $p)); do
