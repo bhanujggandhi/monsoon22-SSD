@@ -1,6 +1,6 @@
 #!/bin/bash
 
-size=$((6 + ($RANDOM % 14)))
+size=$((6 + ($RANDOM % 15)))
 echo "Password will be of length $size"
 
 digits=({0..9})
@@ -92,3 +92,4 @@ for ((i = 0; i < ${#password[@]}; i++)); do
 done
 
 echo $ans
+echo *
