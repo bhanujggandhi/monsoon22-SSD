@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# Author: Bhanuj
+# Description: Script to calculate and print nth Lucas number
+
 read -p "Enter a number enter a number less than 100001: " n
 
+# If the number is greater than 100000
 if [ $n -gt 100000 ]; then
   echo "Please enter a number less than 100001"
   exit 1
@@ -9,7 +13,7 @@ fi
 
 last=1
 secondlast=2
-mod=1000000007
+# mod=1000000007
 
 if [ $n -eq 0 ]; then
   echo 2
