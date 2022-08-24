@@ -44,7 +44,7 @@ while [[ $diff -ne $kaprekarconst ]]; do
     exit 1
   fi
 
-  echo -e "\033[4m$diff"
+  echo $diff
   num=$diff
 done
 

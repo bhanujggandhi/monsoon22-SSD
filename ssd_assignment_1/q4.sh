@@ -1,7 +1,11 @@
 #!/bin/bash
 
+# Author: Bhanuj
+# Description: Script to print the palindromic date of the year if present
+
 read -p "Please enter a year? " year
 
+# Function to check if the year is a leap year
 function checkleap() {
   if [[ $(($year % 4)) -eq 0 && $(($year % 100)) -ne 0 ]]; then
     echo 1
@@ -12,10 +16,12 @@ function checkleap() {
   fi
 }
 
+# Appending 0 if number of digits are less than 4
 while [[ ${#year} < 4 ]]; do
   year="0${year}"
 done
 
+# Append the reverse
 temp=$(echo $year | rev)
 palin="${temp}${year}"
 d=${palin:0:2}
@@ -57,6 +63,6 @@ if [[ $((10#$m)) -eq 4 || $((10#$m)) -eq 6 || $((10#$m)) -eq 9 || $((10#$m)) -eq
   fi
 fi
 
-echo "${d}-${m}-${year}"
+echo -e "\033[1m${d}-${m}-${year}\033[1"
 
 exit 0
