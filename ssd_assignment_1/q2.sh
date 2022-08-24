@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Author: Bhanuj
+# Description: Script to generate random passwords of random length between 6 to 20
+
 size=$((6 + ($RANDOM % 15)))
 
 digits=({0..9})
@@ -15,6 +18,8 @@ flag=1
 while [[ $flag -eq 1 ]]; do
   password=()
   count=0
+
+  # Loop will run until the size is achieved
   while [[ $count -ne $size ]]; do
     randno=$(($RANDOM % 89))
 
@@ -57,6 +62,8 @@ while [[ $flag -eq 1 ]]; do
     count=$(($count + 1))
   done
 
+  # To check if all the character types are atleast one and that last character is not uppercase and palindrome
+
   lowercount=0
   uppercount=0
   specialcount=0
@@ -74,7 +81,7 @@ while [[ $flag -eq 1 ]]; do
     fi
   done
 
-  if [[ $lowercount -eq 0 || $uppercount -eq 0 || $specialcount -eq 0 || $digitcount -eq 0 || "${uppercase[@]}" =~ "${password[$(($size - 1))]}" ]]; then
+  if [[ $lowercount -eq 0 || $uppercount -eq 0 || $specialcount -eq 0 || $digitcount -eq 0 || "${uppercase[@]}" =~ "${password[$(($size - 1))]}" || "${password[0]}" == "$password[$(($size - 1))]" ]]; then
     flag=1
     continue
   else
@@ -89,6 +96,8 @@ for ((i = 0; i < ${#password[@]}; i++)); do
   ans+="${password[$i]}"
 done
 
-echo $ans
+echo -e "\033[4mPassword created\033[m"
+echo
+echo -e "\033[1m${ans}"
 
 exit 0
