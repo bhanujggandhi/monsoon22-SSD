@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Author: Bhanuj
+# Description: Script that takes a input number and prints all the twin primes as well as Sum of digital root of their product
+
 # Initialise an empty array
 nums=()
 
@@ -23,7 +26,9 @@ twins=()
 
 for ((p = 2; p <= $n - 2; p++)); do
   if ((nums[$p] == 0 && nums[$p + 2] == 0)); then
-    echo "($p, $(($p + 2)))"
+    echo "----------------"
+    echo "( $p, $(($p + 2)) )"
+    echo "----------------"
     temp=$(($p * $(($p + 2))))
     twins+=(${temp})
   fi
@@ -36,6 +41,6 @@ for i in ${twins[@]}; do
   ans=$(($ans + $temp))
 done
 
-echo $ans
+echo "Sum of digital root is: $ans"
 
 exit 0
