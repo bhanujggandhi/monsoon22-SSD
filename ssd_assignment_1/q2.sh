@@ -81,19 +81,21 @@ while [[ $flag -eq 1 ]]; do
     fi
   done
 
-  if [[ $lowercount -eq 0 || $uppercount -eq 0 || $specialcount -eq 0 || $digitcount -eq 0 || "${uppercase[@]}" =~ "${password[$(($size - 1))]}" || "${password[0]}" == "$password[$(($size - 1))]" ]]; then
+  ans=""
+  for ((i = 0; i < ${#password[@]}; i++)); do
+    ans+="${password[$i]}"
+  done
+
+  # Reversing the string to check for palindrome
+  reversed=$(echo $ans | rev)
+
+  if [[ $lowercount -eq 0 || $uppercount -eq 0 || $specialcount -eq 0 || $digitcount -eq 0 || "${uppercase[@]}" =~ "${password[$(($size - 1))]}" || "$ans" == "$reversed" ]]; then
     flag=1
     continue
   else
     flag=0
     break
   fi
-done
-
-ans=""
-
-for ((i = 0; i < ${#password[@]}; i++)); do
-  ans+="${password[$i]}"
 done
 
 echo -e "\033[4mPassword created\033[m"
