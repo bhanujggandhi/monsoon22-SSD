@@ -4,7 +4,7 @@ SELECT
     Region,
     COUNT(Region)
 FROM
-    person
+    personEmployeeRegion
 WHERE
     STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') > CAST('00:00:00' AS TIME)
     AND STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') < CAST('08:00:00' AS TIME)
@@ -42,8 +42,8 @@ SELECT
         FROM
             person P2
         WHERE
-            STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') > CAST('00:00:00' AS TIME)
-            AND STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') < CAST('08:00:00' AS TIME)
+            STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') >= CAST('00:00:00' AS TIME)
+            AND STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') <= CAST('08:00:00' AS TIME)
             AND P1.Region = P2.Region
         GROUP BY
             P2.Region
@@ -54,8 +54,8 @@ SELECT
         FROM
             person P3
         WHERE
-            STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') > CAST('08:01:00' AS TIME)
-            AND STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') < CAST('15:00:00' AS TIME)
+            STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') >= CAST('08:01:00' AS TIME)
+            AND STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') <= CAST('15:00:00' AS TIME)
             AND P3.Region = P1.Region
         GROUP BY
             P3.Region
@@ -66,8 +66,8 @@ SELECT
         FROM
             person P4
         WHERE
-            STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') > CAST('15:01:00' AS TIME)
-            AND STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') < CAST('22:29:00' AS TIME)
+            STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') >= CAST('15:01:00' AS TIME)
+            AND STR_TO_DATE(Time_of_Birth, '%h:%i:%s %p') <= CAST('22:59:00' AS TIME)
             AND P4.Region = P1.Region
         GROUP BY
             P4.Region
