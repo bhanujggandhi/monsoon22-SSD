@@ -1,9 +1,21 @@
 USE `employee`;
 
-SELECT
-    *
-FROM
-    person;
+DROP TABLE IF EXISTS `employee`.`persontransfer`;
+
+CREATE TABLE IF NOT EXISTS `employee`.`persontransfer` (
+    `PTPK` INT NOT NULL AUTO_INCREMENT,
+    `EmpIDFK` INT NULL,
+    `FirstName` VARCHAR(45) NULL,
+    `LastName` VARCHAR(45) NULL,
+    `Gender` VARCHAR(1) NULL,
+    `DateofJoining` DATE NULL,
+    `CurrentRegion` VARCHAR(45) NULL,
+    `NewRegion` VARCHAR(45) NULL,
+    PRIMARY KEY (`PTPK`),
+    UNIQUE INDEX `PTPK_UNIQUE` (`PTPK` ASC) VISIBLE,
+    INDEX `pt_person_fk_idx` (`EmpIDFK` ASC) VISIBLE,
+    CONSTRAINT `pt_person_fk` FOREIGN KEY (`EmpIDFK`) REFERENCES `employee`.`person` (`Emp_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 DROP procedure IF EXISTS `spCreatePersonTransfer`;
 
@@ -41,22 +53,7 @@ SET
 
 OPEN cur;
 
-DROP TABLE IF EXISTS `employee`.`persontransfer`;
-
-CREATE TABLE IF NOT EXISTS `employee`.`persontransfer` (
-    `PTPK` INT NOT NULL AUTO_INCREMENT,
-    `EmpIDFK` INT NULL,
-    `FirstName` VARCHAR(45) NULL,
-    `LastName` VARCHAR(45) NULL,
-    `Gender` VARCHAR(1) NULL,
-    `DateofJoining` DATE NULL,
-    `CurrentRegion` VARCHAR(45) NULL,
-    `NewRegion` VARCHAR(45) NULL,
-    PRIMARY KEY (`PTPK`),
-    UNIQUE INDEX `PTPK_UNIQUE` (`PTPK` ASC) VISIBLE,
-    INDEX `pt_person_fk_idx` (`EmpIDFK` ASC) VISIBLE,
-    CONSTRAINT `pt_person_fk` FOREIGN KEY (`EmpIDFK`) REFERENCES `employee`.`person` (`Emp_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+TRUNCATE TABLE `employee`.`persontransfer`;
 
 insertloop: LOOP FETCH cur INTO EmpIDFK,
 FirstName,

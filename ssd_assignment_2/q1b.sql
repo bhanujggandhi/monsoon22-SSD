@@ -1,9 +1,24 @@
 USE `employee`;
 
-SELECT
-    *
-FROM
-    person;
+DROP TABLE IF EXISTS `employee`.`personjoining`;
+
+CREATE TABLE IF NOT EXISTS `employee`.`personjoining` (
+    `PJJoinPK` INT NOT NULL AUTO_INCREMENT,
+    `EmpIDFK` INT NULL,
+    `FirstName` VARCHAR(45) NULL,
+    `LastName` VARCHAR(45) NULL,
+    `DateofBirth` DATE NULL,
+    `Age` INT NULL,
+    `DateofJoining` DATE NULL,
+    `DayofJoining` INT NULL,
+    `MonthofJoining` VARCHAR(15) NULL,
+    `YearofJoining` INT NULL,
+    `WorkExpinDays` INT NULL,
+    PRIMARY KEY (`PJJoinPK`),
+    UNIQUE INDEX `PJJoinPK_UNIQUE` (`PJJoinPK` ASC) VISIBLE,
+    INDEX `pj_person_fk_idx` (`EmpIDFK` ASC) VISIBLE,
+    CONSTRAINT `pj_person_fk` FOREIGN KEY (`EmpIDFK`) REFERENCES `employee`.`person` (`Emp_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 DROP procedure IF EXISTS `spPersonJoining`;
 
@@ -45,25 +60,7 @@ SET
 
 OPEN cur;
 
-DROP TABLE IF EXISTS `employee`.`personjoining`;
-
-CREATE TABLE IF NOT EXISTS `employee`.`personjoining` (
-    `PJJoinPK` INT NOT NULL AUTO_INCREMENT,
-    `EmpIDFK` INT NULL,
-    `FirstName` VARCHAR(45) NULL,
-    `LastName` VARCHAR(45) NULL,
-    `DateofBirth` DATE NULL,
-    `Age` INT NULL,
-    `DateofJoining` DATE NULL,
-    `DayofJoining` INT NULL,
-    `MonthofJoining` VARCHAR(15) NULL,
-    `YearofJoining` INT NULL,
-    `WorkExpinDays` INT NULL,
-    PRIMARY KEY (`PJJoinPK`),
-    UNIQUE INDEX `PJJoinPK_UNIQUE` (`PJJoinPK` ASC) VISIBLE,
-    INDEX `pj_person_fk_idx` (`EmpIDFK` ASC) VISIBLE,
-    CONSTRAINT `pj_person_fk` FOREIGN KEY (`EmpIDFK`) REFERENCES `employee`.`person` (`Emp_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+TRUNCATE TABLE `employee`.`personjoining`;
 
 insertloop: LOOP FETCH cur INTO EmpIDFK,
 FirstName,

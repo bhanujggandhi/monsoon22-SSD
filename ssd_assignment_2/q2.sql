@@ -51,9 +51,6 @@ ORDER BY
 LIMIT
     1;
 
--- SELECT SourceHours;
--- SELECT DestinationHours;
--- SELECT DestinationHours - SourceHours;
 SELECT
     DATE_ADD(
         STR_TO_DATE(inputdate, '%d-%m-%Y %h:%i:%s'),
