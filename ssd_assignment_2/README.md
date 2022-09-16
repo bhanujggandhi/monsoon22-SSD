@@ -69,7 +69,8 @@
 
 **Steps to Execute:**
 
-1. Import the data from `time_zone.csv` using following schema
+1. Create a Database named `assignmen2`
+2. Import the data from `time_zone.csv` using following schema
    ```sql
    CREATE TABLE time_zone(
     zonename varchar(255),
@@ -80,7 +81,7 @@
     dst int
    );
    ```
-2. Run the SQL script `q2.sql`.
+3. Run the SQL script `q2.sql`.
 
 ---
 
