@@ -1,20 +1,32 @@
 USE `employee`;
 
-SELECT 
-    *
-FROM
-    person
-WHERE
-    Weight_in_Kgs < 50;
+DROP TABLE IF EXISTS `employee`.`hike2022`;
+
+CREATE TABLE IF NOT EXISTS `employee`.`hike2022` (
+    `HikePK` INT NOT NULL AUTO_INCREMENT,
+    `EmpIDFK` INT NULL,
+    `FirstName` VARCHAR(45) NULL,
+    `LastName` VARCHAR(45) NULL,
+    `Gender` VARCHAR(45) NULL,
+    `WeightInKg` INT NULL,
+    `LastHike` DECIMAL(2, 0) NULL,
+    `LastSalary` INT NULL,
+    `NewHike` DECIMAL(2, 0) NULL,
+    `NewSalary` INT NULL,
+    PRIMARY KEY (`HikePK`),
+    UNIQUE INDEX `HikePK_UNIQUE` (`HikePK` ASC) VISIBLE,
+    INDEX `fk1_idx` (`EmpIDFK` ASC) VISIBLE,
+    CONSTRAINT `emp_hike_fk` FOREIGN KEY (`EmpIDFK`) REFERENCES `employee`.`person` (`Emp_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 DROP procedure IF EXISTS `spCreateHike2022`;
 
-DELIMITER $$
+DELIMITER $$ 
 
-CREATE PROCEDURE `spCreateHike2022`()
- 
-BEGIN
- 
+CREATE PROCEDURE `spCreateHike2022`() 
+
+BEGIN 
+
 DECLARE loopstop INT DEFAULT 0;
 DECLARE EmpIDFK INT;
 DECLARE FirstName VARCHAR(45) DEFAULT "";
@@ -46,24 +58,7 @@ SET
 
 OPEN cur;
 
-DROP TABLE IF EXISTS `employee`.`hike2022`;
-
-CREATE TABLE IF NOT EXISTS `employee`.`hike2022` (
-    `HikePK` INT NOT NULL AUTO_INCREMENT,
-    `EmpIDFK` INT NULL,
-    `FirstName` VARCHAR(45) NULL,
-    `LastName` VARCHAR(45) NULL,
-    `Gender` VARCHAR(45) NULL,
-    `WeightInKg` INT NULL,
-    `LastHike` DECIMAL(2, 0) NULL,
-    `LastSalary` INT NULL,
-    `NewHike` DECIMAL(2, 0) NULL,
-    `NewSalary` INT NULL,
-    PRIMARY KEY (`HikePK`),
-    UNIQUE INDEX `HikePK_UNIQUE` (`HikePK` ASC) VISIBLE,
-    INDEX `fk1_idx` (`EmpIDFK` ASC) VISIBLE,
-    CONSTRAINT `emp_hike_fk` FOREIGN KEY (`EmpIDFK`) REFERENCES `employee`.`person` (`Emp_ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+TRUNCATE TABLE `employee`.`hike2022`;
 
 insertloop: LOOP FETCH cur INTO EmpIDFK,
 FirstName,
@@ -90,7 +85,7 @@ INSERT INTO
         NewSalary
     )
 VALUES
-(
+    (
         EmpIDFK,
         FirstName,
         LastName,
@@ -112,7 +107,7 @@ DELIMITER ;
 
 CALL spCreateHike2022();
 
-SELECT 
+SELECT
     *
 FROM
     hike2022;
