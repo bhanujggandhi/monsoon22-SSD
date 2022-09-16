@@ -61,4 +61,4 @@ RETURN Ans;
 
 END $$ 
 
-DELIMITER;
+DELIMITER ;
