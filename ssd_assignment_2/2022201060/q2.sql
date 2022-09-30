@@ -13,10 +13,11 @@ CREATE FUNCTION `timezoneconvert` (
     inputdate VARCHAR(255),
     sourcetz VARCHAR(10),
     targettz VARCHAR(10)
-) RETURNS DATETIME BEGIN DECLARE Ans DATETIME;
+) RETURNS DATETIME 
+BEGIN 
 
+DECLARE Ans DATETIME;
 DECLARE SourceHours decimal(10, 4);
-
 DECLARE DestinationHours decimal(10, 4);
 
 SELECT
