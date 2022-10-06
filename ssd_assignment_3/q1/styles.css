@@ -34,7 +34,7 @@ svg {
 
   position: absolute;
 
-  background: #55ccd5;
+  background: #f9f871;
   mix-blend-mode: normal;
   border: 1px solid #4e5a6d;
 }
@@ -128,13 +128,32 @@ svg {
 
 .crowplace {
   box-sizing: border-box;
-
-  /* position: absolute; */
-
-  background: #f9f871;
   mix-blend-mode: normal;
-  border: 1px solid #4e5a6d;
   width: 65px;
   height: 65px;
   border-radius: 50%;
+  display: inline-block;
+  background: radial-gradient(
+    circle at 50% 120%,
+    #81e8f6,
+    #76deef 10%,
+    #055194 80%,
+    #062745 100%
+  );
+}
+
+.vultureclass {
+  box-sizing: border-box;
+  mix-blend-mode: normal;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: inline-block;
+  background: radial-gradient(
+    circle at 50% 120%,
+    #f08080,
+    #ff0800 10%,
+    #5e1914 80%,
+    #062745 100%
+  );
 }
