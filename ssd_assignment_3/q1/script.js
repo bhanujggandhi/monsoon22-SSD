@@ -1,13 +1,14 @@
-function allowDrop(ev) {
-  ev.preventDefault();
-}
+const droppable = (e) => {
+  e.preventDefault();
+};
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
+const drag = (e) => {
+  e.dataTransfer.setData("text", e.target.id);
+};
 
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
+const drop = (e) => {
+  e.preventDefault();
+  const data = e.dataTransfer.getData("text");
+  if (!e.target.id.match(/crow*/g) && !e.target.id.match(/vulture/g))
+    e.target.appendChild(document.getElementById(data));
+};
