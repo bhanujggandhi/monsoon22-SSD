@@ -11,8 +11,7 @@ body {
   /* grid-row-gap: 10px; */
 }
 
-.container-1,
-.container-3 {
+.container-1 {
   background-color: rgba(229, 229, 229, 0.5);
   border: 1px solid rgba(128, 128, 128, 0.5);
   padding: 0.25em;

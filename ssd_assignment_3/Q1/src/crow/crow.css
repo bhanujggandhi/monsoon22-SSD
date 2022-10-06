@@ -1,0 +1,19 @@
+.container-3 {
+  background-color: rgba(229, 229, 229, 0.5);
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  padding: 0.25em;
+  height: 100vh;
+}
+
+.crowplace {
+  box-sizing: border-box;
+
+  /* position: absolute; */
+
+  background: #f9f871;
+  mix-blend-mode: normal;
+  border: 1px solid #4e5a6d;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
