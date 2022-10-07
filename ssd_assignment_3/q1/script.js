@@ -25,6 +25,19 @@ const elpToCrow = {
   elp9: "",
 };
 
+const crowToElp = {
+  crow1: "",
+  crow2: "",
+  crow3: "",
+  crow4: "",
+  crow5: "",
+  crow6: "",
+  crow7: "",
+  vulture: "",
+};
+
+let turn = 0;
+
 const droppable = (e) => {
   e.preventDefault();
 };
@@ -36,10 +49,26 @@ const drag = (e) => {
 const drop = (e) => {
   e.preventDefault();
   const data = e.dataTransfer.getData("text");
-  // if (!e.target.id.match(/crow*/g) && !e.target.id.match(/vulture/g)) {
+
   if (e.target.id in elpToCrow && elpToCrow[e.target.id] === "") {
-    e.target.appendChild(document.getElementById(data));
-    elpToCrow[e.target.id] = data;
+    if (turn === 0 && data.match(/crow*/g)) {
+      e.target.appendChild(document.getElementById(data));
+      turn = 1;
+      if (crowToElp[data] !== "") {
+        elpToCrow[crowToElp[data]] = "";
+      }
+      elpToCrow[e.target.id] = data;
+      crowToElp[data] = e.target.id;
+    } else if (turn === 1 && data.match(/vulture/g)) {
+      e.target.appendChild(document.getElementById(data));
+      elpToCrow[e.target.id] = data;
+      turn = 0;
+      if (crowToElp[data] !== "") {
+        elpToCrow[crowToElp[data]] = "";
+      }
+      elpToCrow[e.target.id] = data;
+      crowToElp[data] = e.target.id;
+    }
     console.log(JSON.stringify(elpToCrow));
   }
 };
