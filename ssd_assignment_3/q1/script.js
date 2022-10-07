@@ -36,8 +36,79 @@ const crowToElp = {
   vulture: "",
 };
 
+const colinearMap = {
+  0: [
+    [1, 3],
+    [7, 8],
+  ],
+  1: [
+    [7, 6],
+    [3, 4],
+  ],
+  2: [
+    [1, 7],
+    [3, 9],
+  ],
+  3: [
+    [1, 0],
+    [9, 5],
+  ],
+  4: [
+    [3, 1],
+    [9, 8],
+  ],
+  5: [
+    [9, 3],
+    [8, 7],
+  ],
+  6: [
+    [8, 9],
+    [7, 1],
+  ],
+  7: [
+    [1, 2],
+    [8, 5],
+  ],
+  8: [
+    [9, 4],
+    [7, 0],
+  ],
+  9: [
+    [3, 2],
+    [8, 6],
+  ],
+};
+
 let turn = 0;
 let crowPlaced = 0;
+let deadCrow = 0;
+
+const checkColinear = (targetId) => {
+  console.log({
+    vulatelp: crowToElp["vulture"],
+    targetId: targetId,
+  });
+  let elpVul = crowToElp["vulture"].slice(-1);
+  targetId = targetId.slice(-1);
+  let colarr = colinearMap[elpVul];
+  console.log(colarr);
+  for (let i = 0; i < colarr.length; i++) {
+    if (colarr[i][1] === parseInt(targetId)) {
+      let elpidOcc = "elp" + colarr[i][0];
+      console.log(elpidOcc);
+      if (elpToCrow[elpidOcc] !== "") {
+        return elpidOcc;
+      }
+    }
+  }
+  return "";
+};
+
+const checkGameOver = (vulturePos) => {
+  if (deadCrow === 4) alert("Vulture Wins Game over");
+  else {
+  }
+};
 
 const droppable = (e) => {
   e.preventDefault();
@@ -81,19 +152,38 @@ const drop = (e) => {
         elpToCrow[e.target.id] = data;
         crowToElp[data] = e.target.id;
         turn = 0;
-      } else {
-        const currElp = crowToElp[data];
-        // If vulture is moving to its adjacent only
-        if (
-          adjacents[currElp.slice(-1)].includes(parseInt(e.target.id.slice(-1)))
-        ) {
-          e.target.appendChild(document.getElementById(data));
-          elpToCrow[crowToElp[data]] = "";
-          elpToCrow[e.target.id] = data;
-          crowToElp[data] = e.target.id;
-          turn = 0;
-        }
       }
+      // Check Jump
+      let adjid = checkColinear(e.target.id);
+      if (adjid !== "") {
+        e.target.appendChild(document.getElementById(data));
+        elpToCrow[crowToElp[data]] = "";
+        elpToCrow[e.target.id] = data;
+        crowToElp[data] = e.target.id;
+        let adjelem = document.getElementById(adjid);
+        console.log({ adjid, adjelem });
+        adjelem.innerHTML = "";
+        let crowelem = elpToCrow[adjelem.id];
+        elpToCrow[adjelem.id] = "";
+        delete crowToElp[crowelem];
+        turn = 0;
+        deadCrow++;
+      }
+    } else {
+      const currElp = crowToElp[data];
+      // If vulture is moving to its adjacent only
+      if (
+        adjacents[currElp.slice(-1)].includes(parseInt(e.target.id.slice(-1)))
+      ) {
+        e.target.appendChild(document.getElementById(data));
+        elpToCrow[crowToElp[data]] = "";
+        elpToCrow[e.target.id] = data;
+        crowToElp[data] = e.target.id;
+        turn = 0;
+        return;
+      }
+
+      checkGameOver();
     }
     // console.log(JSON.stringify(elpToCrow));
     // console.log(JSON.stringify(crowToElp));
