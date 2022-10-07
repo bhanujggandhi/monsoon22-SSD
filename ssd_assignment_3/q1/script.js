@@ -122,6 +122,7 @@ const checkGameOver = () => {
       }
     }
     if (vulturePos === "") return false;
+    alert("Crow wins! Game Over");
     return true;
   }
 };
@@ -199,9 +200,6 @@ const drop = (e) => {
         deadCrow++;
       }
     }
-    console.log(checkGameOver());
-    if (checkGameOver()) {
-      alert("Game Over");
-    }
+    checkGameOver();
   }
 };
