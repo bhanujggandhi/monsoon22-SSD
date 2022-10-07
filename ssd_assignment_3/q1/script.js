@@ -1,15 +1,15 @@
 // Adj to 0 index are 1 and 7
 const adjacents = [
-  "17",
-  "0237",
-  "13",
-  "1249",
-  "39",
-  "89",
-  "78",
-  "0168",
-  "5679",
-  "3458",
+  [1, 7],
+  [0, 2, 3, 7],
+  [1, 3],
+  [1, 2, 4, 9],
+  [3, 9],
+  [8, 9],
+  [7, 8],
+  [0, 1, 6, 8],
+  [5, 6, 7, 9],
+  [3, 4, 5, 8],
 ];
 
 const elpToCrow = {
@@ -51,24 +51,49 @@ const drop = (e) => {
   const data = e.dataTransfer.getData("text");
 
   if (e.target.id in elpToCrow && elpToCrow[e.target.id] === "") {
+    // Crow Turn
     if (turn === 0 && data.match(/crow*/g)) {
-      e.target.appendChild(document.getElementById(data));
-      turn = 1;
-      if (crowToElp[data] !== "") {
-        elpToCrow[crowToElp[data]] = "";
+      if (crowToElp[data] === "") {
+        e.target.appendChild(document.getElementById(data));
+        elpToCrow[e.target.id] = data;
+        crowToElp[data] = e.target.id;
+        turn = 1;
+      } else {
+        const currElp = crowToElp[data];
+        // If crow is moving to its adjacent only
+        if (
+          adjacents[currElp.slice(-1)].includes(parseInt(e.target.id.slice(-1)))
+        ) {
+          e.target.appendChild(document.getElementById(data));
+          elpToCrow[crowToElp[data]] = "";
+          elpToCrow[e.target.id] = data;
+          crowToElp[data] = e.target.id;
+          turn = 1;
+        }
       }
-      elpToCrow[e.target.id] = data;
-      crowToElp[data] = e.target.id;
-    } else if (turn === 1 && data.match(/vulture/g)) {
-      e.target.appendChild(document.getElementById(data));
-      elpToCrow[e.target.id] = data;
-      turn = 0;
-      if (crowToElp[data] !== "") {
-        elpToCrow[crowToElp[data]] = "";
-      }
-      elpToCrow[e.target.id] = data;
-      crowToElp[data] = e.target.id;
     }
-    console.log(JSON.stringify(elpToCrow));
+    // Vulture Turn
+    else if (turn === 1 && data.match(/vulture/g)) {
+      if (crowToElp[data] === "") {
+        e.target.appendChild(document.getElementById(data));
+        elpToCrow[e.target.id] = data;
+        crowToElp[data] = e.target.id;
+        turn = 0;
+      } else {
+        const currElp = crowToElp[data];
+        // If vulture is moving to its adjacent only
+        if (
+          adjacents[currElp.slice(-1)].includes(parseInt(e.target.id.slice(-1)))
+        ) {
+          e.target.appendChild(document.getElementById(data));
+          elpToCrow[crowToElp[data]] = "";
+          elpToCrow[e.target.id] = data;
+          crowToElp[data] = e.target.id;
+          turn = 0;
+        }
+      }
+    }
+    // console.log(JSON.stringify(elpToCrow));
+    // console.log(JSON.stringify(crowToElp));
   }
 };
