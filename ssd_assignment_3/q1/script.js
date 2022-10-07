@@ -84,14 +84,14 @@ let crowPlaced = 0;
 let deadCrow = 0;
 
 const checkColinear = (targetId) => {
-  console.log({
-    vulatelp: crowToElp["vulture"],
-    targetId: targetId,
-  });
+  // console.log({
+  //   vulatelp: crowToElp["vulture"],
+  //   targetId: targetId,
+  // });
   let elpVul = crowToElp["vulture"].slice(-1);
   targetId = targetId.slice(-1);
   let colarr = colinearMap[elpVul];
-  console.log(colarr);
+  // console.log(colarr);
   for (let i = 0; i < colarr.length; i++) {
     if (colarr[i][1] === parseInt(targetId)) {
       let elpidOcc = "elp" + colarr[i][0];
@@ -104,9 +104,25 @@ const checkColinear = (targetId) => {
   return "";
 };
 
-const checkGameOver = (vulturePos) => {
-  if (deadCrow === 4) alert("Vulture Wins Game over");
-  else {
+const checkGameOver = () => {
+  if (deadCrow === 4) {
+    alert("Vulture Wins Game over");
+    return true;
+  } else {
+    let vulturePos = crowToElp["vulture"];
+    if (vulturePos) {
+      let adjacentToVulture = adjacents[vulturePos.slice(-1)];
+      for (let i = 0; i < adjacentToVulture.length; i++) {
+        let elpId = "elp" + adjacentToVulture[i];
+        if (elpToCrow[elpId] === "") return false;
+      }
+      let colinearToVulture = colinearMap[vulturePos.slice(-1)];
+      for (let i = 0; i < colinearToVulture.length; i++) {
+        if (elpToCrow["elp" + colinearToVulture[i][1]] === "") return false;
+      }
+    }
+    if (vulturePos === "") return false;
+    return true;
   }
 };
 
@@ -152,6 +168,19 @@ const drop = (e) => {
         elpToCrow[e.target.id] = data;
         crowToElp[data] = e.target.id;
         turn = 0;
+      } else {
+        const currElp = crowToElp[data];
+        // If vulture is moving to its adjacent only
+        if (
+          adjacents[currElp.slice(-1)].includes(parseInt(e.target.id.slice(-1)))
+        ) {
+          e.target.appendChild(document.getElementById(data));
+          elpToCrow[crowToElp[data]] = "";
+          elpToCrow[e.target.id] = data;
+          crowToElp[data] = e.target.id;
+          turn = 0;
+          return;
+        }
       }
       // Check Jump
       let adjid = checkColinear(e.target.id);
@@ -169,23 +198,10 @@ const drop = (e) => {
         turn = 0;
         deadCrow++;
       }
-    } else {
-      const currElp = crowToElp[data];
-      // If vulture is moving to its adjacent only
-      if (
-        adjacents[currElp.slice(-1)].includes(parseInt(e.target.id.slice(-1)))
-      ) {
-        e.target.appendChild(document.getElementById(data));
-        elpToCrow[crowToElp[data]] = "";
-        elpToCrow[e.target.id] = data;
-        crowToElp[data] = e.target.id;
-        turn = 0;
-        return;
-      }
-
-      checkGameOver();
     }
-    // console.log(JSON.stringify(elpToCrow));
-    // console.log(JSON.stringify(crowToElp));
+    console.log(checkGameOver());
+    if (checkGameOver()) {
+      alert("Game Over");
+    }
   }
 };
