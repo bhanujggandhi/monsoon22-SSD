@@ -37,6 +37,7 @@ const crowToElp = {
 };
 
 let turn = 0;
+let crowPlaced = 0;
 
 const droppable = (e) => {
   e.preventDefault();
@@ -58,7 +59,8 @@ const drop = (e) => {
         elpToCrow[e.target.id] = data;
         crowToElp[data] = e.target.id;
         turn = 1;
-      } else {
+        crowPlaced++;
+      } else if (crowPlaced === 7) {
         const currElp = crowToElp[data];
         // If crow is moving to its adjacent only
         if (
