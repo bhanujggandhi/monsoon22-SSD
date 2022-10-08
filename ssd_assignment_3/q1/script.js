@@ -191,7 +191,7 @@ const drop = (e) => {
         elpToCrow[e.target.id] = data;
         crowToElp[data] = e.target.id;
         let adjelem = document.getElementById(adjid);
-        console.log({ adjid, adjelem });
+        // console.log({ adjid, adjelem });
         adjelem.innerHTML = "";
         let crowelem = elpToCrow[adjelem.id];
         elpToCrow[adjelem.id] = "";
