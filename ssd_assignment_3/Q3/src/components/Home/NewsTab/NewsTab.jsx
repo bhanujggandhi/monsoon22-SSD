@@ -20,11 +20,12 @@ const NewsTab = ({ category }) => {
   const clearSearch = () => {
     setSearchInp("");
     fetchPromise
-      .then(() => {
-        console.log("Successfully Fetched");
+      .then((arr) => {
+        setNews(arr);
+        console.log("Successfully fetched");
       })
-      .catch(() => {
-        "Error";
+      .catch((err) => {
+        console.log(err);
       });
   };
 

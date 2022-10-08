@@ -43,6 +43,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:faad5cfe104124f75a520e57d8ea4141d5fe882f690d837a912737a4368f3b9b8ab3d1bf5e28921f25bf8f5c5624e7c4ede0ffd18dcf3ce2b9066aacef3e70db#npm:18.2.0"],\
             ["react-router-dom", "virtual:faad5cfe104124f75a520e57d8ea4141d5fe882f690d837a912737a4368f3b9b8ab3d1bf5e28921f25bf8f5c5624e7c4ede0ffd18dcf3ce2b9066aacef3e70db#npm:6.4.2"],\
+            ["swiper", "npm:8.4.3"],\
+            ["unsplash-js", "npm:7.0.15"],\
             ["vite", "virtual:faad5cfe104124f75a520e57d8ea4141d5fe882f690d837a912737a4368f3b9b8ab3d1bf5e28921f25bf8f5c5624e7c4ede0ffd18dcf3ce2b9066aacef3e70db#npm:3.1.6"]\
           ],\
           "linkType": "SOFT"\
@@ -3101,6 +3103,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/content-type", [\
+        ["npm:1.1.5", {\
+          "packageLocation": "./.yarn/cache/@types-content-type-npm-1.1.5-0c8ea8928f-77d0a88003.zip/node_modules/@types/content-type/",\
+          "packageDependencies": [\
+            ["@types/content-type", "npm:1.1.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/lodash", [\
         ["npm:4.14.186", {\
           "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.186-63caeea1e5-ee0c1368a8.zip/node_modules/@types/lodash/",\
@@ -3503,6 +3514,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["content-type", [\
+        ["npm:1.0.4", {\
+          "packageLocation": "./.yarn/cache/content-type-npm-1.0.4-3b1a5ca16b-3d93585fda.zip/node_modules/content-type/",\
+          "packageDependencies": [\
+            ["content-type", "npm:1.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["convert-source-map", [\
         ["npm:1.8.0", {\
           "packageLocation": "./.yarn/cache/convert-source-map-npm-1.8.0-037f671dde-985d974a2d.zip/node_modules/convert-source-map/",\
@@ -3602,6 +3622,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/detect-node-es-npm-1.1.0-2ad57e0b50-e46307d726.zip/node_modules/detect-node-es/",\
           "packageDependencies": [\
             ["detect-node-es", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dom7", [\
+        ["npm:4.0.4", {\
+          "packageLocation": "./.yarn/cache/dom7-npm-4.0.4-637bc4420a-b38604f74e.zip/node_modules/dom7/",\
+          "packageDependencies": [\
+            ["dom7", "npm:4.0.4"],\
+            ["ssr-window", "npm:4.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5222,9 +5252,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:faad5cfe104124f75a520e57d8ea4141d5fe882f690d837a912737a4368f3b9b8ab3d1bf5e28921f25bf8f5c5624e7c4ede0ffd18dcf3ce2b9066aacef3e70db#npm:18.2.0"],\
             ["react-router-dom", "virtual:faad5cfe104124f75a520e57d8ea4141d5fe882f690d837a912737a4368f3b9b8ab3d1bf5e28921f25bf8f5c5624e7c4ede0ffd18dcf3ce2b9066aacef3e70db#npm:6.4.2"],\
+            ["swiper", "npm:8.4.3"],\
+            ["unsplash-js", "npm:7.0.15"],\
             ["vite", "virtual:faad5cfe104124f75a520e57d8ea4141d5fe882f690d837a912737a4368f3b9b8ab3d1bf5e28921f25bf8f5c5624e7c4ede0ffd18dcf3ce2b9066aacef3e70db#npm:3.1.6"]\
           ],\
           "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["ssr-window", [\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/ssr-window-npm-4.0.2-01f9c0151e-df18260092.zip/node_modules/ssr-window/",\
+          "packageDependencies": [\
+            ["ssr-window", "npm:4.0.2"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["ssri", [\
@@ -5308,6 +5349,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["swiper", [\
+        ["npm:8.4.3", {\
+          "packageLocation": "./.yarn/unplugged/swiper-npm-8.4.3-1fe1ac69b0/node_modules/swiper/",\
+          "packageDependencies": [\
+            ["swiper", "npm:8.4.3"],\
+            ["dom7", "npm:4.0.4"],\
+            ["ssr-window", "npm:4.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["tar", [\
         ["npm:6.1.11", {\
           "packageLocation": "./.yarn/cache/tar-npm-6.1.11-e6ac3cba9c-a04c07bb9e.zip/node_modules/tar/",\
@@ -5375,6 +5427,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["unique-slug", "npm:3.0.0"],\
             ["imurmurhash", "npm:0.1.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["unsplash-js", [\
+        ["npm:7.0.15", {\
+          "packageLocation": "./.yarn/cache/unsplash-js-npm-7.0.15-c9efcc56a8-814ede385e.zip/node_modules/unsplash-js/",\
+          "packageDependencies": [\
+            ["unsplash-js", "npm:7.0.15"],\
+            ["@types/content-type", "npm:1.1.5"],\
+            ["content-type", "npm:1.0.4"]\
           ],\
           "linkType": "HARD"\
         }]\
