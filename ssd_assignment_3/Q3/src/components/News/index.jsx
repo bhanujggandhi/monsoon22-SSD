@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import Chip from "../Common/Chip/Chip";
 
 import EmptyList from "../Common/EmptyList/EmptyList";
 
@@ -44,7 +45,7 @@ function News() {
               {currNews.keywords &&
                 currNews.keywords.map((category, i) => (
                   <div key={i}>
-                    <Chip label={category[0]} />
+                    <Chip label={category} />
                   </div>
                 ))}
             </div>
