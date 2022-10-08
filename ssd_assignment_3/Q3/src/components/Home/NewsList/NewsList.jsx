@@ -6,7 +6,11 @@ import "./NewsList.css";
 const NewsList = ({ news }) => {
   return (
     <div className='newsList-wrap'>
-      {news ? news.map((n) => <NewsItem n={n} />) : <div>Empty</div>}
+      {news ? (
+        news.map((n, i) => <NewsItem key={i} n={n} index={i} />)
+      ) : (
+        <div>Empty</div>
+      )}
     </div>
   );
 };

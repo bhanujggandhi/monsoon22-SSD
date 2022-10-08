@@ -47,7 +47,6 @@ function Home() {
     })
       .then((response) => {
         response.json().then((res) => {
-          console.log(res);
           setNews(res.results);
         });
       })
