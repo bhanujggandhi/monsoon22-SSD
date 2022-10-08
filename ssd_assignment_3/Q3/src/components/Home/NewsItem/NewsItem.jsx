@@ -5,16 +5,7 @@ import Chip from "../../Common/Chip/Chip";
 import "./NewsItem.css";
 
 const NewsItem = ({
-  n: {
-    title,
-    creator,
-    description,
-    content,
-    pubDate,
-    image_url,
-    category,
-    link,
-  },
+  n: { title, creator, description, pubDate, image_url, category },
   index,
   category: cat,
 }) => {

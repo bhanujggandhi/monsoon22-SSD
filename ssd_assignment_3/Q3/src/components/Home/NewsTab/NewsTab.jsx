@@ -19,7 +19,13 @@ const NewsTab = ({ category }) => {
   };
   const clearSearch = () => {
     setSearchInp("");
-    getData();
+    fetchPromise
+      .then(() => {
+        console.log("Successfully Fetched");
+      })
+      .catch(() => {
+        "Error";
+      });
   };
 
   const handleSearch = () => {
@@ -38,8 +44,8 @@ const NewsTab = ({ category }) => {
     setNews(filteredNews);
   };
 
-  const getData = () => {
-    fetch(`./data/${category}.json`, {
+  const fetchPromise = new Promise((resolve, reject) => {
+    fetch(`../../data/${category}.json`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -47,16 +53,23 @@ const NewsTab = ({ category }) => {
     })
       .then((response) => {
         response.json().then((res) => {
-          setNews(res.results);
+          resolve(res.results);
         });
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+
+  useEffect(() => {
+    fetchPromise
+      .then((arr) => {
+        setNews(arr);
+        console.log("Successfully fetched");
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  useEffect(() => {
-    getData();
   }, []);
 
   return (

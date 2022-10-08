@@ -10,7 +10,7 @@ function News() {
   const { id, category } = useParams();
   const [currNews, setcurrNews] = useState(null);
 
-  const getData = () => {
+  const fetchPromise = new Promise((resolve, reject) => {
     fetch(`../../data/${category}.json`, {
       headers: {
         "Content-Type": "application/json",
@@ -19,16 +19,23 @@ function News() {
     })
       .then((response) => {
         response.json().then((res) => {
-          setcurrNews(res.results[id]);
+          resolve(res.results);
         });
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+
+  useEffect(() => {
+    fetchPromise
+      .then((arr) => {
+        setcurrNews(arr[id]);
+        console.log("Successfully fetched");
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  useEffect(() => {
-    getData();
   }, []);
 
   return (
