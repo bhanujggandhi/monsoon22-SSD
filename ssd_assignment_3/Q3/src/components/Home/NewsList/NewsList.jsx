@@ -3,11 +3,13 @@ import NewsItem from "../NewsItem/NewsItem";
 
 import "./NewsList.css";
 
-const NewsList = ({ news }) => {
+const NewsList = ({ news, category }) => {
   return (
     <div className='newsList-wrap'>
       {news ? (
-        news.map((n, i) => <NewsItem key={i} n={n} index={i} />)
+        news.map((n, i) => (
+          <NewsItem key={i} n={n} index={i} category={category} />
+        ))
       ) : (
         <div>Empty</div>
       )}

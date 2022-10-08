@@ -16,6 +16,7 @@ const NewsItem = ({
     link,
   },
   index,
+  category: cat,
 }) => {
   return (
     <div className='newsItem-wrap'>
@@ -40,7 +41,7 @@ const NewsItem = ({
             <p>{pubDate}</p>
           </div>
         </div>
-        <Link className='newsItem-link' to={`/news/${index}`}>
+        <Link className='newsItem-link' to={`/news/${cat}/${index}`}>
           ➝
         </Link>
       </footer>

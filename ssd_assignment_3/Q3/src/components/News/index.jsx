@@ -7,11 +7,11 @@ import EmptyList from "../Common/EmptyList/EmptyList";
 import "./styles.css";
 
 function News() {
-  const { id } = useParams();
+  const { id, category } = useParams();
   const [currNews, setcurrNews] = useState(null);
 
   const getData = () => {
-    fetch("../data/finance.json", {
+    fetch(`../../data/${category}.json`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

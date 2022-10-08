@@ -1,79 +1,51 @@
-import React, { useEffect, useState } from "react";
-import EmptyList from "../Common/EmptyList/EmptyList";
+import React from "react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+
 import Header from "./Header/Header";
-import NewsList from "./NewsList/NewsList";
-import Search from "./Search/Search";
+import NewsTab from "./NewsTab/NewsTab";
 
 function Home() {
-  const [searchInp, setSearchInp] = useState("");
-
-  const [news, setNews] = useState([]);
-
-  const handleSearchInp = (e) => {
-    setSearchInp(e.target.value);
-  };
-
-  const searchExec = (e) => {
-    e.preventDefault();
-    handleSearch();
-  };
-  const clearSearch = () => {
-    setSearchInp("");
-    getData();
-  };
-
-  const handleSearch = () => {
-    const allNews = news;
-
-    const filteredNews = allNews.filter((news) => {
-      if (news.category.length > 0) {
-        return news.category[0]
-          .toLowerCase()
-          .includes(searchInp.toLowerCase().trim());
-      } else {
-        return [];
-      }
-    });
-
-    setNews(filteredNews);
-  };
-
-  const getData = () => {
-    fetch("./data/finance.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((response) => {
-        response.json().then((res) => {
-          setNews(res.results);
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <div>
       {/* Page Header */}
       <Header />
 
-      {/* Search Bar */}
-      <Search
-        clearSearch={clearSearch}
-        searchExec={searchExec}
-        searchinp={searchInp}
-        handleSearchInp={handleSearchInp}
-      />
-
-      {/* News List */}
-      {news.length > 0 ? <NewsList news={news} /> : <EmptyList />}
+      <Tabs isLazy isFitted variant='enclosed'>
+        <TabList mt='1em' mb='1em'>
+          <Tab>Auto Mobiles</Tab>
+          <Tab>COVID 19</Tab>
+          <Tab>CryptoCurrency</Tab>
+          <Tab>Olympics</Tab>
+          <Tab>Union Budget</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <>
+              <NewsTab category='automobile' />
+            </>
+          </TabPanel>
+          <TabPanel>
+            <>
+              <NewsTab category='covid' />
+            </>
+          </TabPanel>
+          <TabPanel>
+            <>
+              <NewsTab category='finance' />
+            </>
+          </TabPanel>
+          <TabPanel>
+            <>
+              <NewsTab category='olympics' />
+            </>
+          </TabPanel>
+          <TabPanel>
+            <>
+              <NewsTab category='union-budget' />
+            </>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </div>
   );
 }
