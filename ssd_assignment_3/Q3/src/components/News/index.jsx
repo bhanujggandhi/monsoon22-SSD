@@ -11,7 +11,7 @@ function News() {
   const [currNews, setcurrNews] = useState(null);
 
   const getData = () => {
-    fetch("../data/automobile.json", {
+    fetch("../data/finance.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -60,7 +60,9 @@ function News() {
             }
             alt='cover'
           />
-          <p className='news-desc'>{currNews.content}</p>
+          <p className='news-desc'>
+            {currNews.content ? currNews.content : currNews.description}
+          </p>
         </div>
       ) : (
         <EmptyList />

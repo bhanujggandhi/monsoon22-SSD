@@ -39,7 +39,7 @@ function Home() {
   };
 
   const getData = () => {
-    fetch("./data/automobile.json", {
+    fetch("./data/finance.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
