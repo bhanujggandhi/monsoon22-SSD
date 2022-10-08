@@ -1,16 +1,26 @@
-import { Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 
 import Home from "./components/Home";
 import News from "./components/News";
 
 import "./App.css";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/news/:id",
+    element: <News />,
+  },
+]);
+
 function App() {
   return (
-    <h1>
-      <Route path='/' component={Home} />
-      <Route path='/news/:id' component={News} />
-    </h1>
+    <div className='container'>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
