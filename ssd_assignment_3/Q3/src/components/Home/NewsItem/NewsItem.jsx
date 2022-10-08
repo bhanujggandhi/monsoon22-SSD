@@ -18,7 +18,17 @@ const NewsItem = ({
 }) => {
   return (
     <div className='newsItem-wrap'>
-      <img className='newsItem-cover' src={image_url} alt='cover' />
+      <img
+        className='newsItem-cover'
+        src={
+          image_url
+            ? image_url.length === 0
+              ? "https://media4.s-nbcnews.com/i/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.png"
+              : image_url
+            : "https://media4.s-nbcnews.com/i/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.png"
+        }
+        alt='cover'
+      />
       <Chip label={category} />
       <h3>{title}</h3>
       <p className='newsItem-desc'>{description}</p>

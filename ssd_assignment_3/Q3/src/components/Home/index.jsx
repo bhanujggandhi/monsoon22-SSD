@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
+import EmptyList from "../Common/EmptyList/EmptyList";
 import Header from "./Header/Header";
 import NewsList from "./NewsList/NewsList";
 import Search from "./Search/Search";
-
-const searchExec = (e) => {
-  e.preventDefault();
-};
-const clearSearch = () => {};
 
 function Home() {
   const [searchInp, setSearchInp] = useState("");
@@ -15,6 +11,31 @@ function Home() {
 
   const handleSearchInp = (e) => {
     setSearchInp(e.target.value);
+  };
+
+  const searchExec = (e) => {
+    e.preventDefault();
+    handleSearch();
+  };
+  const clearSearch = () => {
+    setSearchInp("");
+    getData();
+  };
+
+  const handleSearch = () => {
+    const allNews = news;
+
+    const filteredNews = allNews.filter((news) => {
+      if (news.category.length > 0) {
+        return news.category[0]
+          .toLowerCase()
+          .includes(searchInp.toLowerCase().trim());
+      } else {
+        return [];
+      }
+    });
+
+    setNews(filteredNews);
   };
 
   const getData = () => {
@@ -53,7 +74,7 @@ function Home() {
       />
 
       {/* News List */}
-      <NewsList news={news} />
+      {news.length > 0 ? <NewsList news={news} /> : <EmptyList />}
     </div>
   );
 }
