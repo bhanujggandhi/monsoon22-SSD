@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
-
 import { createApi } from "unsplash-js";
 
 import Header from "./Header/Header";
 import NewsTab from "./NewsTab/NewsTab";
 import "swiper/css";
 import "swiper/css/autoplay";
+import { Link } from "react-router-dom";
 
 const unsplash = createApi({
   accessKey: "13sIs5rFO8PytWU0mp7Cq6UL3D2eJ6HgocsBz7P_ST4",
@@ -17,12 +17,6 @@ const unsplash = createApi({
 function Home() {
   const [pics, setPics] = useState([]);
   useEffect(() => {
-    // unsplash.search
-    //   .photos("ads", 1, 10)
-    //   .then(toJson)
-    //   .then((json) => {
-    //     setPics(json.results);
-    //   });
     unsplash.search
       .getPhotos({
         query: "advertisements",
@@ -81,22 +75,24 @@ function Home() {
         <p style={{ background: "black", color: "white", paddingLeft: 20 }}>
           Advertisement
         </p>
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-          autoplay={{ delay: 3000 }}
-          modules={[Autoplay]}
-        >
-          {pics.map((pic) => (
-            <SwiperSlide key={pic.id}>
-              <img
-                style={{ height: "200px", width: "100em" }}
-                alt={pic.alt_description}
-                src={pic.urls.full}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <a target='_blank' href={"https://www.google.in"}>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={1}
+            autoplay={{ delay: 3000 }}
+            modules={[Autoplay]}
+          >
+            {pics.map((pic) => (
+              <SwiperSlide key={pic.id}>
+                <img
+                  style={{ height: "200px", width: "100em" }}
+                  alt={pic.alt_description}
+                  src={pic.urls.full}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </a>
       </div>
     </div>
   );

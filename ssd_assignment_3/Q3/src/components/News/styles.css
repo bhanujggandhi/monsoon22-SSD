@@ -1,3 +1,8 @@
+.heading {
+  font-size: 2em;
+  font-weight: 500;
+}
+
 .news-wrap {
   max-width: 700px;
   margin: 0 auto;
@@ -5,7 +10,7 @@
 
 .newsgoback {
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 1em;
   color: #a9a9a9;
   font-weight: 500;
   margin-bottom: 2rem;
