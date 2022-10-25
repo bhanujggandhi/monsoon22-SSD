@@ -1,19 +1,18 @@
+.blink {
+  animation: blink-animation 2s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
 body {
-  position: absolute;
-}
-
-.gridbox {
-  display: grid;
-
-  grid-template-columns: 25fr 50fr 25fr;
-
-  /* grid-column-gap: 10px; */
-  /* grid-row-gap: 10px; */
-}
-
-.container-1 {
-  background-color: rgba(229, 229, 229, 0.5);
-  border: 1px solid rgba(128, 128, 128, 0.5);
-  padding: 0.25em;
-  height: 100vh;
+  background-color: #220135;
 }
