@@ -1,6 +1,7 @@
 # %matplotlib inline
 from matplotlib import pyplot as plt
 from matplotlib import style
+import math
 
 style.use("ggplot")
 
@@ -9,6 +10,10 @@ numeric = '0'
 
 xplots=[0]
 yplots=[0]
+
+total_dist = 0
+finalx = 0
+finaly = 0
 
 def parselen(value):
   units = ""
@@ -45,6 +50,9 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
   elif splitinp[1] == "NW":
     tempx = xplots[-1] + (length * -0.7071)
@@ -52,6 +60,9 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
   elif splitinp[1] == "SE":
     tempx = xplots[-1] + (length * 0.7071)
@@ -59,6 +70,9 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
   elif splitinp[1] == "SW":
     tempx = xplots[-1] + (length * -0.7071)
@@ -66,6 +80,9 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
   elif splitinp[1] == "N":
     tempx = xplots[-1] + (length * 0)
@@ -73,6 +90,9 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
   elif splitinp[1] == "S":
     tempx = xplots[-1] + (length * 0)
@@ -80,6 +100,9 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
   elif splitinp[1] == "E":
     tempx = xplots[-1] + (length * 1)
@@ -87,6 +110,9 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
   elif splitinp[1] == "W":
     tempx = xplots[-1] + (length * -1)
@@ -94,7 +120,13 @@ while True:
     line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],'o',ls='-', ms=8,markevery=[-1], label=inp)
     xplots.append(tempx)
     yplots.append(tempy)
+    total_dist += length
+    finalx = tempx
+    finaly = tempy
     print("You are at: ", "(", tempx, tempy, ")")
+
+print("You have travelled a total distance of", total_dist, "mm")
+print("You are at a distance (Euclidean) of", math.dist([0,0], [finalx, finaly]), "mm from (0, 0)")
 
 plt.legend()
 plt.show()
