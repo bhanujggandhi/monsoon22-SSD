@@ -1,6 +1,6 @@
-from csv import writer, reader
+from csv import writer, reader, DictReader, DictWriter
 import pandas as pd
-
+from tabulate import tabulate
 
 while True:
     print("Enter the task input:")
@@ -33,15 +33,55 @@ while True:
             writer_object = writer(f_object)
             writer_object.writerow(List)
             f_object.close()
-    
+
     elif task == 2:
-        df = pd.read_csv("data.csv")
         df = pd.read_csv('data.csv',
-            header=0, 
-            names=['First Name', 'Last Name','Address', 'City', 'State', 'Zip Code', 'Contact Number', 'Email Address'])
-        pd.options.display.max_rows = 9999
-        print(df)
-    
+                         header=0,
+                         names=['First Name', 'Last Name', 'Address', 'City', 'State', 'Zip Code', 'Contact Number', 'Email Address'])
+        print(tabulate(df, headers="keys", tablefmt="fancy_outline"))
+
+    elif task == 3:
+        print("Enter the entry that you want to update: ")
+        ind = int(input())
+        print("Choose the column that you want to update:")
+        ops = {1: "First Name", 2: "Last Name", 3: "Address", 4: "City",
+               5: "State", 6: "Zip", 7: "Contact Number", 8: "Email Address"}
+
+        print(ops)
+
+        loc = int(input())
+
+        print("Enter a new value: ")
+        newval = input()
+
+        with open("data.csv", "r") as file:
+            readData = [row for row in DictReader(file)]
+            readData[ind][ops[loc]] = newval
+
+        readHeader = readData[0].keys()
+
+        with open("data.csv", "w") as file:
+            writer = DictWriter(file, fieldnames = readHeader)
+            writer.writeheader()
+            writer.writerows(readData)
+
+
+    elif task == 4:
+        print("Enter the entry that you want to delete: ")
+        ind = int(input())
+
+        with open("data.csv", "r") as file:
+            readData = [row for row in DictReader(file)]
+            readData.pop(ind)
+
+        readHeader = readData[0].keys()
+
+        with open("data.csv", "w") as file:
+            writer = DictWriter(file, fieldnames = readHeader)
+            writer.writeheader()
+            writer.writerows(readData)
+
+
     elif task == 5:
         query = input('Enter number to find\n')
 
@@ -53,9 +93,8 @@ while True:
             for entry in row:
                 if query in entry:
                     res.append(row)
+        print(tabulate(pd.DataFrame(res,
+                           columns=['First Name', 'Last Name', 'Address', 'City', 'State', 'Zip Code', 'Contact Number', 'Email Address']),headers="keys", tablefmt="fancy_outline"))
 
-        print(pd.DataFrame(res, 
-            columns=['First Name', 'Last Name','Address', 'City', 'State', 'Zip Code', 'Contact Number', 'Email Address']))
-    
     elif task == 6:
         break
