@@ -83,7 +83,7 @@ while True:
 
 
     elif task == 5:
-        query = input('Enter number to find\n')
+        query = input('Enter query to find\n')
 
         df = reader(open('data.csv', "r"))
 
