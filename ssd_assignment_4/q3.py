@@ -127,7 +127,7 @@ while True:
 
 print("You have travelled a total distance of", total_dist, "mm")
 
-angrad = math.atan2(finalx, finaly)
+angrad = math.atan2(finaly, finalx)
 
 print("You are at a distance (Euclidean) of", math.dist([0,0], [finalx, finaly]), "mm from (0, 0) with an angle of", math.degrees(angrad), "degrees.")
 
