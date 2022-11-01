@@ -1,10 +1,10 @@
-topline = "  ______ "
+bottomline = " \______/ "
 linewithsym = "+--------+"
+message = "|  STOP  | "
 pyramidlevel1 = " /      \ "
 pyramidlevel2 = "/        \ "
-bottomline = " \______/ "
 pyramidlevel3 = "\        / "
-message = "|  STOP  | "
+topline = "  ______ "
 
 
 print(topline)
