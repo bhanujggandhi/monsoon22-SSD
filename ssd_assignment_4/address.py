@@ -78,39 +78,42 @@ while True:
     task = int(input())
     if task == 1:
         List = []
-        print("Enter the first name: ")
+        print(colored("Enter the first name: ", "blue"))
         List.append(input())
-        print("Enter the last name: ")
+        print(colored("Enter the last name: ", "blue"))
         List.append(input())
-        print("Enter address: ")
+        print(colored("Enter address: ", "blue"))
         List.append(input())
-        print("Enter city: ")
+        print(colored("Enter city: ", "blue"))
         List.append(input())
-        print("Enter state: ")
+        print(colored("Enter state: ", "blue"))
         List.append(input())
-        print("Enter zip: ")
+        print(colored("Enter zip: ", "blue"))
         postal = input()
         while checkpostal(postal) == False:
-            console.print("❗ Please enter a valid Zip Code", style="red")
+            console.print("❗ Please enter a valid Zip Code",
+                          style="red", emoji=True)
             postal = input()
         List.append(postal)
-        print("Enter contact number: ")
+        print(colored("Enter contact number: ", "blue"))
         num = input()
         while checknumber(num) == False:
-            console.print("❗ Please enter a valid Phone Number", style="red")
+            console.print("❗ Please enter a valid Phone Number",
+                          style="red", emoji=True)
             num = input()
         List.append(num)
-        print("Enter email: ")
+        print(colored("Enter email: ", "blue"))
         email = input()
         while checkemail(email) == False:
-            console.print("❗ Please enter a valid email", style="red")
+            console.print("❗ Please enter a valid email",
+                          style="red", emoji=True)
             email = input()
         List.append(email)
         with open('data.csv', 'a') as f_object:
             writer_object = writer(f_object)
             writer_object.writerow(List)
             f_object.close()
-        console.print("✅ Entry added successfully", style="green")
+        console.print("✅ Entry added successfully", style="green", emoji=True)
 
     elif task == 2:
         df = pd.read_csv('data.csv',
@@ -127,10 +130,23 @@ while True:
         print("Enter the entry that you want to update: ")
         ind = int(input())
         print("Choose the column that you want to update:")
-        ops = {1: "First Name", 2: "Last Name", 3: "Address", 4: "City",
-               5: "State", 6: "Zip", 7: "Contact Number", 8: "Email Address"}
+        ops = {
+            1: "First Name",
+            2: "Last Name",
+            3: "Address",
+            4: "City",
+            5: "State",
+            6: "Zip",
+            7: "Contact Number",
+            8: "Email Address"
+        }
 
-        print(ops)
+        # console.print(ops)
+
+        for k in ops:
+            console.print(k, style="blue bold", end="")
+            console.print(":", end="  ")
+            console.print(ops[k], style="yellow")
 
         loc = int(input())
 
@@ -141,12 +157,10 @@ while True:
             while checkpostal(newval) == False:
                 print("Please enter a valid Zip Code")
                 newval = input()
-
-        if loc == 7:
+        elif loc == 7:
             while checknumber(newval) == False:
                 print("Please enter a valid contact number")
-                newval = input()
-        if loc == 8:
+        elif loc == 8:
             while checkemail(newval) == False:
                 print("Please enter a valid email address")
                 newval = input()
@@ -161,6 +175,8 @@ while True:
             writer = DictWriter(file, fieldnames=readHeader)
             writer.writeheader()
             writer.writerows(readData)
+        console.print("✅ Entry updated successfully",
+                      style="green", emoji=True)
 
     elif task == 4:
         print("Enter the entry that you want to delete: ")
@@ -176,6 +192,8 @@ while True:
             writer = DictWriter(file, fieldnames=readHeader)
             writer.writeheader()
             writer.writerows(readData)
+        console.print("✅ Entry deleted successfully",
+                      style="green", emoji=True)
 
     elif task == 5:
         query = input('Enter query to find\n')
@@ -188,6 +206,7 @@ while True:
             for entry in row:
                 if query in entry:
                     res.append(row)
+                    break
         # print(tabulate(pd.DataFrame(res,
         #                             columns=['First Name', 'Last Name', 'Address', 'City', 'State', 'Zip Code', 'Contact Number', 'Email Address']), headers="keys", tablefmt="fancy_outline"))
         table = Table(title="Search Results", show_header=True,
