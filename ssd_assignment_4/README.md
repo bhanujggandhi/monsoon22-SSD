@@ -14,6 +14,10 @@
 1. All the strings are stored in various variables to reuse.
 2. Printed them using print function in python
 3. Assumed that *creative way* means we cannot change the figure shape but can change the aesthetics of it like: line width, colours. or boldness.
+4. It is assumed that user will have termcolor library installed. If not run the below command
+	```sh
+	python -m pip install termcolor
+	```
 
 **Steps to Execute**
 
