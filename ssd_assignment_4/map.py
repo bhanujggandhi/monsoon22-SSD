@@ -22,6 +22,7 @@ numeric = '0'
 
 xplots = [0]
 yplots = [0]
+inparr = ["start"]
 
 total_dist = 0
 finalx = 0
@@ -43,8 +44,6 @@ def parselen(value):
 f = Figlet(font='banner3-D')
 print(colored(f.renderText("MAP"), "yellow"))
 
-plt.plot([0, 0], [0, 0], 'o', ls='-', ms=8, markevery=[-1], label="Start")
-
 while True:
     print(colored("Please enter an input (eg: <dist><mm, cm, m, km> <N,S,W,E,NE,NW,SE,SE>) or show to see the map or 0 to stop",
           "magenta", attrs=["bold"]))
@@ -56,6 +55,9 @@ while True:
         if splitinp[0] == '0':
             break
         elif splitinp[0] == 'show':
+            plt.plot([0, 0], [0, 0], 'o', ls='-', ms=8, markevery=[-1], label="Start")
+            for i in range(1, len(xplots)):
+                plt.plot([xplots[i-1], xplots[i]], [yplots[i-1], yplots[i]], 'o', ls='-', ms=8, markevery=[-1], label=inparr[i])
             plt.legend()
             plt.show()
             continue
@@ -76,10 +78,11 @@ while True:
     if splitinp[1] == "NE":
         tempx = (length * 0.7071) + xplots[-1]
         tempy = (length * 0.7071) + yplots[-1]
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -88,10 +91,11 @@ while True:
     elif splitinp[1] == "NW":
         tempx = xplots[-1] + (length * -0.7071)
         tempy = yplots[-1] + (length * 0.7071)
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -100,10 +104,11 @@ while True:
     elif splitinp[1] == "SE":
         tempx = xplots[-1] + (length * 0.7071)
         tempy = yplots[-1] + (length * -0.7071)
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -112,10 +117,11 @@ while True:
     elif splitinp[1] == "SW":
         tempx = xplots[-1] + (length * -0.7071)
         tempy = yplots[-1] + (length * -0.7071)
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -124,10 +130,11 @@ while True:
     elif splitinp[1] == "N":
         tempx = xplots[-1] + (length * 0)
         tempy = yplots[-1] + (length * 1)
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -136,10 +143,11 @@ while True:
     elif splitinp[1] == "S":
         tempx = xplots[-1] + (length * 0)
         tempy = yplots[-1] + (length * -1)
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -148,10 +156,11 @@ while True:
     elif splitinp[1] == "E":
         tempx = xplots[-1] + (length * 1)
         tempy = yplots[-1] + (length * 0)
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -160,10 +169,11 @@ while True:
     elif splitinp[1] == "W":
         tempx = xplots[-1] + (length * -1)
         tempy = yplots[-1] + (length * 0)
-        line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
-                        'o', ls='-', ms=8, markevery=[-1], label=inp)
+        # line = plt.plot([xplots[-1], tempx], [yplots[-1], tempy],
+        #                 'o', ls='-', ms=8, markevery=[-1], label=inp)
         xplots.append(tempx)
         yplots.append(tempy)
+        inparr.append(inp)
         total_dist += length
         finalx = tempx
         finaly = tempy
@@ -178,6 +188,8 @@ angrad = math.atan2(finaly, finalx)
 print("You are at a distance (Euclidean) of", colored(str(math.dist([0, 0], [
       finalx, finaly])) + " mm", "green", attrs=["bold", "underline"]), "from (0, 0) with an angle of", colored(str(math.degrees(angrad)) + " degrees.", "green", attrs=["bold", "underline"]))
 
-
+plt.plot([0, 0], [0, 0], 'o', ls='-', ms=8, markevery=[-1], label="Start")
+for i in range(1, len(xplots)):
+    plt.plot([xplots[i-1], xplots[i]], [yplots[i-1], yplots[i]], 'o', ls='-', ms=8, markevery=[-1], label=inparr[i])
 plt.legend()
 plt.show()
