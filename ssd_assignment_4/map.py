@@ -16,9 +16,7 @@ import math
 from termcolor import colored
 from pyfiglet import Figlet
 
-
 style.use("ggplot")
-
 
 numeric = '0'
 
@@ -28,7 +26,6 @@ yplots = [0]
 total_dist = 0
 finalx = 0
 finaly = 0
-
 
 def parselen(value):
     units = ""
@@ -44,11 +41,13 @@ def parselen(value):
 
 
 f = Figlet(font='banner3-D')
-print(colored(f.renderText("MAP"), "yellow"));
+print(colored(f.renderText("MAP"), "yellow"))
 
+plt.plot([0, 0], [0, 0], 'o', ls='-', ms=8, markevery=[-1], label="Start")
 
 while True:
-    print(colored("Please enter an input (eg: <dist><mm, cm, m, km> <N,S,W,E,NE,NW,SE,SE>) or 0 to stop", "magenta", attrs=["bold"]))
+    print(colored("Please enter an input (eg: <dist><mm, cm, m, km> <N,S,W,E,NE,NW,SE,SE>) or 0 to stop",
+          "magenta", attrs=["bold"]))
     inp = input()
 
     splitinp = inp.split()

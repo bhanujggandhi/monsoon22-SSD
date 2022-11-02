@@ -18,7 +18,7 @@
 **Steps to Execute**
 
 ```sh
-$ python map.py
+python pattern.py
 ```
 ---
 
@@ -56,17 +56,26 @@ python address.py
 
 ## Question 3 (<span>map.py</span>)
 
-**Description:** Create a news website that would fetch the data from external JSON file and display it in the web page.
+**Description:** Person P is at location S and moves around in the 2D world based on sequence of input commands. You can consider S as any coordinate. Take user or file input for sequence of commands. For example, [(3mm, N), (4.5mm, NW), (2mm, SE)] is one such example of sequence of commands. It says that P moves  for  3  millimetres in N direction from the current location. Next, P moves 4.5  mm in NW and so on. Here, N, S, W, E are North, South, West and East, respectively. Length can be taken in millimetres or centimetres.
 
-**Assumption:**
+**Assumptions:**
+1. Input will be taken in the format *\<distance>\<unit> \<direction>*
+2. **Distance** can be any ***integer or float***, **unit** can be ***mm, cm, m, km***, ***direction*** can be ***N, S, W, E, NE, NW, SE, SW***.
+3. All the values related to distance will be computed in **mm** only and angles are computed in degrees.
+4. The scale of the map generated will be in **mm**. But user can input any input, it will be converted into mm only when process inside the application.
+5. It is assumed that origin, that is where the traversal will start will be **(0, 0) coordinates** in the map.
+6. User will need to press 0 to stop the program and see the plot.
+7. Plot is created using Matplotlib.
+8. Each command is shown in different colors with different legends.
+9. Each legend has a label denoting for which command this plot was created.
+10. It is assumed that user will have csv, pandas, re, termcolor, pyfiglet, rich libraries installed. If not run the below command
+	```sh
+	python -m pip install matplotlib termcolor pyfiglet
+	```
 
-1. 5 external JSON files have been put in the public directory, in order to serve the data for the application.
-2. **/** page will show multiple tabs with each tab has number of news for specific category.
-3. By clicking each news card, it will take you to **/:category/:id** of the news which is a dedicated page for a specific news.
-4. Advertisements are fetched from **Unsplash Image API**, which is present at the bottom of each page. The news automatically updates using carousel.
 
 **Steps to Execute**
 
 ```sh
-$ python map.py
+python map.py
 ```
