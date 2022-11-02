@@ -64,11 +64,12 @@ python address.py
 3. All the values related to distance will be computed in **mm** only and angles are computed in degrees.
 4. The scale of the map generated will be in **mm**. But user can input any input, it will be converted into mm only when process inside the application.
 5. It is assumed that origin, that is where the traversal will start will be **(0, 0) coordinates** in the map.
-6. User will need to press 0 to stop the program and see the plot.
-7. Plot is created using Matplotlib.
-8. Each command is shown in different colors with different legends.
-9. Each legend has a label denoting for which command this plot was created.
-10. It is assumed that user will have matplotlib, termcolor, pyfiglet, libraries installed. If not run the below command
+6. User will need to enter **show** if they want look at the plot at any instance.
+7. User will need to press 0 to stop the program and see the plot.
+8. Plot is created using Matplotlib.
+9. Each command is shown in different colors with different legends.
+10. Each legend has a label denoting for which command this plot was created.
+11. It is assumed that user will have matplotlib, termcolor, pyfiglet, libraries installed. If not run the below command
 	```sh
 	python -m pip install matplotlib termcolor pyfiglet
 	```
