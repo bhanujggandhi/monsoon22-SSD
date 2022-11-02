@@ -8,12 +8,12 @@
 
 ## Question 1 (<span>pattern.py</span>)
 
-**Description:** Create a figure mentioned in the document using string variables.
+**Description:** Created a figure mentioned in the document using string variables.
 
 **Assumptions:**
-1. All the variables are stored in a string
+1. All the strings are stored in various variables to reuse.
 2. Printed them using print function in python
-3. Assumed that *creative way* means we cannot change the figure but the aesthetics of it line colours or boldness.
+3. Assumed that *creative way* means we cannot change the figure shape but can change the aesthetics of it like: line width, colours. or boldness.
 
 **Steps to Execute**
 
@@ -61,7 +61,7 @@ python address.py
 **Assumptions:**
 1. Input will be taken in the format *\<distance>\<unit> \<direction>*
 2. **Distance** can be any ***integer or float***, **unit** can be ***mm, cm, m, km***, ***direction*** can be ***N, S, W, E, NE, NW, SE, SW***.
-3. All the values related to distance will be computed in **mm** only and angles are computed in degrees.
+3. All the values related to distance will be computed in **mm** only and angles are computed in **degrees**.
 4. The scale of the map generated will be in **mm**. But user can input any input, it will be converted into mm only when process inside the application.
 5. It is assumed that origin, that is where the traversal will start will be **(0, 0) coordinates** in the map.
 6. User will need to enter **show** if they want look at the plot at any instance.
