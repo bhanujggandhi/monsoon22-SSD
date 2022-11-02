@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 from matplotlib import style
 import math
 from termcolor import colored
+from pyfiglet import Figlet
 
 
 style.use("ggplot")
@@ -31,8 +32,12 @@ def parselen(value):
     return number, units.strip()
 
 
+f = Figlet(font='banner3-D')
+print(colored(f.renderText("MAP"), "yellow"));
+
+
 while True:
-    print("Please enter an input (eg: 1mm N) or 0 to stop")
+    print(colored("Please enter an input (eg: <dist><mm, cm, m, km> <N,S,W,E,NE,NW,SE,SE>) or 0 to stop", "magenta", attrs=["bold"]))
     inp = input()
 
     splitinp = inp.split()
@@ -65,7 +70,7 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
     elif splitinp[1] == "NW":
         tempx = xplots[-1] + (length * -0.7071)
         tempy = yplots[-1] + (length * 0.7071)
@@ -77,7 +82,7 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
     elif splitinp[1] == "SE":
         tempx = xplots[-1] + (length * 0.7071)
         tempy = yplots[-1] + (length * -0.7071)
@@ -89,7 +94,7 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
     elif splitinp[1] == "SW":
         tempx = xplots[-1] + (length * -0.7071)
         tempy = yplots[-1] + (length * -0.7071)
@@ -101,7 +106,7 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
     elif splitinp[1] == "N":
         tempx = xplots[-1] + (length * 0)
         tempy = yplots[-1] + (length * 1)
@@ -113,7 +118,7 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
     elif splitinp[1] == "S":
         tempx = xplots[-1] + (length * 0)
         tempy = yplots[-1] + (length * -1)
@@ -125,7 +130,7 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
     elif splitinp[1] == "E":
         tempx = xplots[-1] + (length * 1)
         tempy = yplots[-1] + (length * 0)
@@ -137,7 +142,7 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
     elif splitinp[1] == "W":
         tempx = xplots[-1] + (length * -1)
         tempy = yplots[-1] + (length * 0)
@@ -149,15 +154,15 @@ while True:
         finalx = tempx
         finaly = tempy
         print("You are at: ", colored("(" + str(tempx)+", " +
-              str(tempy) + ")", "red", attrs=["bold", "reverse", "underline"]))
+              str(tempy) + ")", "red", attrs=["bold", "underline"]))
 
-print("You have travelled a total distance of", colored(total_dist, "green", attrs=[
-      "bold", "reverse", "underline"]), colored("mm", "green", attrs=["bold", "reverse", "underline"]))
+print("You have travelled a total distance of", colored(str(total_dist) + " mm", "green", attrs=[
+      "bold", "underline"]))
 
 angrad = math.atan2(finaly, finalx)
 
-print("You are at a distance (Euclidean) of", colored(math.dist([0, 0], [
-      finalx, finaly]), "green", attrs=["bold", "reverse", "underline"]), colored("mm", "green", attrs=["bold", "reverse"]), "from (0, 0) with an angle of", colored(math.degrees(angrad), "green", attrs=["bold", "reverse", "underline"]), colored("degrees.", "green", attrs=["bold", "reverse"]))
+print("You are at a distance (Euclidean) of", colored(str(math.dist([0, 0], [
+      finalx, finaly])) + " mm", "green", attrs=["bold", "underline"]), "from (0, 0) with an angle of", colored(str(math.degrees(angrad)) + " degrees.", "green", attrs=["bold", "underline"]))
 
 
 plt.legend()
