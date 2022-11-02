@@ -46,7 +46,7 @@ print(colored(f.renderText("MAP"), "yellow"))
 plt.plot([0, 0], [0, 0], 'o', ls='-', ms=8, markevery=[-1], label="Start")
 
 while True:
-    print(colored("Please enter an input (eg: <dist><mm, cm, m, km> <N,S,W,E,NE,NW,SE,SE>) or 0 to stop",
+    print(colored("Please enter an input (eg: <dist><mm, cm, m, km> <N,S,W,E,NE,NW,SE,SE>) or show to see the map or 0 to stop",
           "magenta", attrs=["bold"]))
     inp = input()
 
@@ -55,6 +55,10 @@ while True:
     if len(splitinp) == 1:
         if splitinp[0] == '0':
             break
+        elif splitinp[0] == 'show':
+            plt.legend()
+            plt.show()
+            continue
 
     length, unit = parselen(splitinp[0])
 
