@@ -1,3 +1,11 @@
+"""
+Statement: Build “Address Directory” in Python. Here, a directory consists of a list of entries. Each entry 
+can store details such as First Name, Last Name, Address, City, State, Zip, Contact number, 
+Email address, etc. In order to maintain an address directory, the following functionalities are 
+required.
+Author: Bhanuj Gandhi (2022201068)
+"""
+
 from csv import writer, reader, DictReader, DictWriter
 import pandas as pd
 import re

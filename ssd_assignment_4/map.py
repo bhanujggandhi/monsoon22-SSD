@@ -1,3 +1,14 @@
+"""
+Statement: Person P is at location S and moves around in the 2D world based on sequence of input 
+commands. You can consider S as any coordinate. Take user or file input for sequence of 
+commands. For example, [(3mm, N), (4.5mm, NW), (2mm, SE)] is one such example of 
+sequence of commands. It says that P moves for 3 millimeters in N direction from the current 
+location. Next, P moves 4.5 mm in NW and so on. Here, N, S, W, E are North, South, West and 
+East, respectively. Length can be taken in millimeters or centimeters.
+Author: Bhanuj Gandhi (2022201068)
+"""
+
+
 # %matplotlib inline
 from matplotlib import pyplot as plt
 from matplotlib import style

@@ -1,3 +1,9 @@
+"""
+Statement: Write a python script to output the below figure on the command prompt. Follow the most 
+creative and efficient way to do this.
+Author: Bhanuj Gandhi (2022201068)
+"""
+
 bottomline = " \______/ "
 linewithsym = "+--------+"
 message = "|  STOP  | "
